@@ -1,7 +1,7 @@
 // Для управления состоянием использовать class
 import React, { Component } from 'react';
 
-import ReactAux from '../../hoc/ReactAux';
+import ReactAux from '../../hoc/ReactAux/ReactAux';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
