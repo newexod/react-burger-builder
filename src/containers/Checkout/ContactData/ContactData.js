@@ -85,6 +85,7 @@ class ContactData extends Component {
           ]
         },
         value: '',
+        validation: {}, // 1 способ
         valid: true
       }
     },
@@ -128,6 +129,11 @@ class ContactData extends Component {
 
   checkValidity(value, rules) {
     let isValid = true;
+
+    // 2 способ
+    // if (!rules) {
+    //   return true;
+    // }
 
     if (rules.required) {
       isValid = value.trim() !== '' && isValid; // trim() - удаляет пробелы с начала и конца строки
