@@ -11,6 +11,7 @@ const input = (props) => {
         className={classes.InputElement} 
         {...props.elementConfig} 
         value={props.value} 
+        readOnly
       />;
       break;
     case ('textarea'):
@@ -25,6 +26,7 @@ const input = (props) => {
         className={classes.InputElement} 
         {...props.elementConfig} 
         value={props.value} 
+        readOnly
       />;
   }
 
