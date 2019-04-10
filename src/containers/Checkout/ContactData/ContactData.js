@@ -8,6 +8,7 @@ import axios from '../../../axios-orders';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actionTypes from '../../../store/actions/index';
+import { updateObject, checkValidity } from '../../../shared/utility';
 
 class ContactData extends Component {
   state = {
@@ -97,7 +98,6 @@ class ContactData extends Component {
 
   orderHandler = (e) => {
     e.preventDefault();
-    console.log(this.props.ings); // {bacon: 1, cheese: 0, meat: 1, salad: 1}
 
     const formData = {};
 
@@ -115,41 +115,16 @@ class ContactData extends Component {
     this.props.onOrderBurger(order, this.props.token);
   }
 
-  checkValidity(value, rules) {
-    let isValid = true;
-
-    // 2 способ
-    // if (!rules) {
-    //   return true;
-    // }
-
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid; // trim() - удаляет пробелы с начала и конца строки
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    return isValid;
-  }
-
   inputChangedHandler = (event, inputIdentifier) => {
-    const updatedOrderForm = {
-      ...this.state.orderForm
-    };
-    const updatedFormElement = {
-      ...updatedOrderForm[inputIdentifier]
-    }; // deepClone
+    const updatedFormElement = updateObject(this.state.orderForm[inputIdentifier], {
+      value: event.target.value,
+      valid: checkValidity(event.target.value, this.state.orderForm[inputIdentifier].validation),
+      touched: true
+    });
 
-    updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-    updatedFormElement.touched = true;
-    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    const updatedOrderForm = updateObject(this.state.orderForm, {
+      [inputIdentifier]: updatedFormElement
+    });
 
     let formIsValid = true;
 
