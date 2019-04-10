@@ -1,18 +1,12 @@
 import React from 'react';
-// import { withRouter } from 'react-router-dom';
 
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
-  console.log('BurgerProps', props);
   let transformedIngredients = Object.keys( props.ingredients )
     .map( igKey => {
-      // console.log(igKey);
       return [...Array( props.ingredients[igKey] )].map( ( _, i ) => {
-        // console.log(props.ingredients[igKey]);
-        // console.log(igKey + i);
-        // console.log(i);
         return <BurgerIngredient key={igKey + i} type={igKey} />;
       } );
     } )
@@ -23,7 +17,6 @@ const burger = (props) => {
   if (transformedIngredients.length === 0) {
     transformedIngredients = <p>Please start adding ingredients!</p>
   }
-  console.log(transformedIngredients)
 
   return (
     <div className={classes.Burger}>
@@ -35,4 +28,3 @@ const burger = (props) => {
 };
 
 export default burger;
-// export default withRouter(burger); // добавление history, location, match к props

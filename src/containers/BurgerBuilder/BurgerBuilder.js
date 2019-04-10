@@ -1,4 +1,3 @@
-// Для управления состоянием использовать class
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -18,7 +17,6 @@ class BurgerBuilder extends Component {
   }
 
   componentDidMount() {
-    console.log('BurgerBuilderProps', this.props);
     this.props.onInitIngredients();
   }
 

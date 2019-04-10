@@ -11,10 +11,6 @@ import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 
 class App extends Component {
-  // state = {
-  //   show: true
-  // };
-
   componentDidMount() {
     this.props.onTryAutoSignup();
   }

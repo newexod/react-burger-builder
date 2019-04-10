@@ -98,7 +98,6 @@ class ContactData extends Component {
 
   orderHandler = (e) => {
     e.preventDefault();
-    console.log(this.props.ings); // {bacon: 1, cheese: 0, meat: 1, salad: 1}
 
     const formData = {};
 
